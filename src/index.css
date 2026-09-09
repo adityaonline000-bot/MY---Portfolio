@@ -1,9 +1,140 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700&family=Bebas+Neue&family=Cinzel:wght@400;600;700&family=Pinyon+Script&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --color-background: #000000;
+  --color-foreground: #E8DFD8;
+  --color-muted: #14100D;
+  --color-muted-foreground: #8A7D70;
+  --color-card: #0A0806;
+  --color-card-foreground: #E8DFD8;
+  --color-border: #8C6D4F;
+  --color-primary: #D4AF37;
+  --color-primary-foreground: #000000;
+}
+
+@keyframes meteor {
+  0% {
+    transform: rotate(215deg) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(215deg) translateX(-500px);
+    opacity: 0;
+  }
+}
+
+.animate-meteor-effect {
+  animation: meteor 5s linear infinite;
+}
+
 html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
   background-color: #000;
+  color: #E8DFD8;
 }
+
+/* ================= LENIS SMOOTH SCROLL STYLES ================= */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom Scrollbar for internal scroll containers */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(18, 15, 12, 0.6);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.35);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.7);
+}
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212, 175, 55, 0.35) rgba(18, 15, 12, 0.6);
+}
+
+/* ================= CINEMATIC SECTION SCROLL ARCHITECTURE ================= */
+html,
+body {
+  scroll-behavior: auto;
+  overflow-x: clip;
+}
+
+html.section-snap-enabled,
+body.section-snap-enabled,
+.page-scroll-container {
+  scroll-snap-type: y proximity;
+}
+
+.cinematic-section {
+  min-height: 100svh;
+}
+
+/* TYPE A: Viewport scenes snap cleanly */
+[data-scroll-type="scene"] {
+  scroll-snap-align: start;
+  min-height: 100svh;
+}
+
+/* TYPE B: Content scenes grow naturally with zero snap entrapment */
+[data-scroll-type="content"],
+.projects-section {
+  scroll-snap-align: none !important;
+  scroll-snap-stop: normal !important;
+  height: auto !important;
+  min-height: 100svh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.section-snap-enabled,
+  body.section-snap-enabled,
+  .page-scroll-container {
+    scroll-snap-type: none !important;
+  }
+  .major-section,
+  [data-scroll-section],
+  .cinematic-section,
+  .cinematic-stack-section {
+    position: relative !important;
+    scroll-snap-align: none !important;
+    scroll-snap-stop: normal !important;
+  }
+}

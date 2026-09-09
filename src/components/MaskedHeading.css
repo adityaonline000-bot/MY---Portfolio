@@ -1,0 +1,172 @@
+/* Base Masked Heading styles */
+.masked-heading {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  overflow: visible;
+}
+
+/* ========================================================
+   1. DEDICATED RIGHT-SIDE CONTENT RAIL (HARD SAFE ZONE)
+   ======================================================== */
+.hero-signature-rail {
+  position: relative;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: min(90vw, 440px);
+  overflow: visible;
+}
+
+@media (min-width: 1024px) {
+  .hero-signature-rail {
+    position: absolute;
+    top: 53%;
+    right: clamp(36px, 4.5vw, 96px);
+    width: min(28vw, 540px);
+    max-width: 540px;
+    transform: translateY(-50%);
+    margin-top: 0;
+    overflow: visible;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-signature-rail {
+    right: clamp(36px, 4.5vw, 96px);
+    width: min(28vw, 560px);
+    max-width: 560px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero-signature-rail {
+    right: clamp(40px, 4.8vw, 100px);
+    width: min(28vw, 580px);
+    max-width: 580px;
+  }
+}
+
+/* ========================================================
+   2. QUOTE BLOCK (SHARED LEFT ALIGNMENT)
+   ======================================================== */
+.hero-quote {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+  overflow: visible;
+}
+
+.hero-quote__mark {
+  font-family: 'Times New Roman', serif;
+  font-size: clamp(22px, 1.8vw, 28px);
+  line-height: 1;
+  color: #C99E5D;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.hero-quote__text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(10px, 0.72vw, 11px);
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #E0D3C5;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.hero-quote__text p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Small divider line sharing the same left edge */
+.hero-quote__divider {
+  width: min(150px, 50%);
+  height: 1px;
+  background: linear-gradient(90deg, #D4AF37 0%, rgba(232, 215, 197, 0.7) 65%, transparent 100%);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.35);
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ========================================================
+   3. SIGNATURE BLOCK & SAFE RENDERING AREA
+   ======================================================== */
+.hero-signature {
+  position: relative;
+  width: min(30vw, 560px);
+  min-width: 420px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+  overflow: visible;
+  white-space: nowrap;
+}
+
+@media (max-width: 1023px) {
+  .hero-signature {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+
+/* Dedicated internal padding for complete glyph clearance */
+.hero-signature__masked {
+  width: 100%;
+  padding-right: clamp(24px, 2.5vw, 50px);
+  padding-left: 8px;
+  padding-top: 8px;
+  padding-bottom: clamp(12px, 1.5vw, 28px);
+  box-sizing: border-box;
+  text-align: left;
+  overflow: visible;
+  display: inline-block;
+  line-height: 1;
+}
+
+/* Hierarchy: reveal -> clip -> media -> source */
+.masked-heading__reveal {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  overflow: visible;
+  will-change: transform, opacity;
+}
+
+.masked-heading__clip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  overflow: visible;
+}
+
+.masked-heading__media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  overflow: visible;
+}
+
+.masked-heading__source {
+  display: inline-block;
+  overflow: visible;
+  white-space: nowrap;
+  vertical-align: middle;
+}

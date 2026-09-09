@@ -244,6 +244,8 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     setupLenis();
     updateCardTransforms();
 
+    const lastTransforms = lastTransformsRef.current;
+
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
@@ -254,7 +256,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       stackCompletedRef.current = false;
       cardsRef.current = [];
       initialTopsRef.current = [];
-      lastTransformsRef.current.clear();
+      lastTransforms.clear();
       isUpdatingRef.current = false;
     };
   }, [
