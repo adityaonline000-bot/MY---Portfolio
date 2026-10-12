@@ -1,32 +1,33 @@
-# React + TypeScript + Vite
+# MY---Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Personal cinematic portfolio for Aditya Yadav (adityayadav.space) built with React 19, TypeScript, Vite, Tailwind CSS, Framer Motion, GSAP, Three.js, and OGL.
 
-Currently, two official plugins are available:
+## Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js 20.19+ or 22.12+
+- npm
 
-## React Compiler
+## Local development
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```sh
+npm ci
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Vite prints the local development URL when the server is ready.
+
+## Validation and production build
+
+```sh
+npm run lint
+npm run typecheck
+npm run build
+npm run preview
+```
+
+The production site is written to `dist/`. Deploy the contents of that directory to a static host. Configure the host to serve `index.html` for application routes so direct navigation to portfolio pages works.
+
+## Notes
+
+- WebGL effects are loaded only when needed. Reduced-motion preferences are respected by the motion and scroll styles.
+- The site uses Google Fonts and several external profile/project links, so those features require network access.

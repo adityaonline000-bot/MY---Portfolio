@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
 
 import './TechText.css';
 
@@ -9,21 +9,80 @@ const FALLOFF_STEPS = 8;
 const SPRING = 320;
 const DAMPING = 22;
 
-const approach = (current, target, dt, seconds) => current + (target - current) * (1 - Math.exp(-dt / seconds));
+interface TechTextProps {
+  text?: string;
+  align?: 'left' | 'center' | 'right';
+  fontFamily?: string;
+  fontWeight?: number | string;
+  fontSize?: number;
+  letterSpacing?: number;
+  color?: string;
+  accentColor?: string;
+  reach?: number;
+  softness?: number;
+  dashLength?: number;
+  dashGap?: number;
+  strokeWidth?: number;
+  lineStyle?: string;
+  reveal?: 'letter' | 'area';
+  specks?: number;
+  selection?: boolean;
+  labels?: boolean;
+  draggable?: boolean;
+  sweep?: boolean;
+  speed?: number;
+  className?: string;
+  style?: CSSProperties;
+}
 
-const hexToRgb = hex => {
+type TechTextSettings = Required<Omit<TechTextProps, 'className' | 'style'>>;
+
+interface TextLayout {
+  size: number;
+  baseline: number;
+  left: number;
+  right: number;
+  top: number;
+  bottom: number;
+}
+
+interface GlyphArtwork {
+  image: HTMLCanvasElement;
+  left: number;
+  top: number;
+}
+
+interface GlyphBase {
+  char: string;
+  x: number;
+  box: { x1: number; y1: number; x2: number; y2: number };
+}
+
+interface Glyph extends GlyphBase {
+  offset: { x: number; y: number };
+  velocity: { x: number; y: number };
+  outline: number;
+  index: number;
+  fill: GlyphArtwork;
+  dashes: GlyphArtwork;
+}
+
+const approach = (current: number, target: number, dt: number, seconds: number) =>
+  current + (target - current) * (1 - Math.exp(-dt / seconds));
+
+const hexToRgb = (hex: string): [number, number, number] => {
   let h = String(hex || '').replace('#', '');
   if (h.length === 3) h = h.replace(/./g, c => c + c);
   const n = parseInt(h.slice(0, 6), 16);
   return Number.isNaN(n) ? [255, 255, 255] : [(n >> 16) & 255, (n >> 8) & 255, n & 255];
 };
 
-const rgba = (hex, alpha) => {
+const rgba = (hex: string, alpha: number) => {
   const [r, g, b] = hexToRgb(hex);
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
 
-const noise = (...values) => {
+const noise = (...values: number[]) => {
   let h = 2166136261;
   for (const value of values) {
     h = Math.imul(h ^ (value | 0), 16777619);
@@ -34,9 +93,9 @@ const noise = (...values) => {
   return (h >>> 0) / 4294967296;
 };
 
-const signed = value => (value > 0 ? `+${value}` : value < 0 ? `−${-value}` : '0');
+const signed = (value: number) => (value > 0 ? `+${value}` : value < 0 ? `−${-value}` : '0');
 
-const TechText = ({
+const TechText: React.FC<TechTextProps> = ({
   text = 'React Bits',
   align = 'left',
   fontFamily = '',
@@ -61,10 +120,10 @@ const TechText = ({
   className = '',
   style
 }) => {
-  const containerRef = useRef(null);
-  const canvasRef = useRef(null);
-  const settingsRef = useRef(null);
-  const wakeRef = useRef(() => {});
+  const containerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const settingsRef = useRef<TechTextSettings | null>(null);
+  const wakeRef = useRef<() => void>(() => {});
 
   useEffect(() => {
     settingsRef.current = {
@@ -111,8 +170,8 @@ const TechText = ({
     let alive = true;
     let layoutKey = '';
     let requestedFont = '';
-    let word = null;
-    let glyphs = [];
+    let word: TextLayout | null = null;
+    let glyphs: Glyph[] = [];
     let presence = 0;
     let clock = 0;
     let pulse = 0;
@@ -128,17 +187,17 @@ const TechText = ({
       wakeRef.current();
     };
 
-    const family = s => s.fontFamily || getComputedStyle(container).fontFamily || 'sans-serif';
-    const fontFor = (s, size) => `${s.fontWeight} ${size}px ${family(s)}`;
+    const family = (s: TechTextSettings) => s.fontFamily || getComputedStyle(container).fontFamily || 'sans-serif';
+    const fontFor = (s: TechTextSettings, size: number) => `${s.fontWeight} ${size}px ${family(s)}`;
 
-    const setFont = (target, s, size) => {
+    const setFont = (target: CanvasRenderingContext2D, s: TechTextSettings, size: number) => {
       target.font = fontFor(s, size);
       if ('letterSpacing' in target) target.letterSpacing = `${s.letterSpacing * size}px`;
       target.textAlign = 'left';
       target.textBaseline = 'alphabetic';
     };
 
-    const sprite = (s, view, glyph, stroke) => {
+    const sprite = (s: TechTextSettings, view: TextLayout, glyph: GlyphBase, stroke: boolean): GlyphArtwork => {
       const pad = Math.ceil(s.strokeWidth * 2 + 4);
       const left = glyph.box.x1 - pad;
       const top = glyph.box.y1 - pad;
@@ -170,7 +229,7 @@ const TechText = ({
       return { image, left, top };
     };
 
-    const ensureLayout = s => {
+    const ensureLayout = (s: TechTextSettings): TextLayout => {
       const key = [
         s.text,
         family(s),
@@ -260,7 +319,7 @@ const TechText = ({
       return next;
     };
 
-    const glyphAt = (x, y) => {
+    const glyphAt = (x: number, y: number) => {
       if (!word || y < word.top - 24 || y > word.bottom + 24) return -1;
       let best = -1;
       let bestDistance = Infinity;
@@ -276,7 +335,14 @@ const TechText = ({
       return bestDistance < 28 ? best : -1;
     };
 
-    const falloff = (target, cx, cy, radius, strength, softness) => {
+    const falloff = (
+      target: CanvasRenderingContext2D,
+      cx: number,
+      cy: number,
+      radius: number,
+      strength: number,
+      softness: number
+    ) => {
       const inner = Math.min(1, Math.max(0, 1 - softness));
       const gradient = target.createRadialGradient(cx, cy, 0, cx, cy, radius);
       gradient.addColorStop(0, `rgba(0, 0, 0, ${strength})`);
@@ -293,7 +359,14 @@ const TechText = ({
       return gradient;
     };
 
-    const blit = (target, art, dx, dy, originX, originY) => {
+    const blit = (
+      target: CanvasRenderingContext2D,
+      art: GlyphArtwork,
+      dx: number,
+      dy: number,
+      originX: number,
+      originY: number
+    ) => {
       target.drawImage(
         art.image,
         Math.round((art.left + dx) * dpr - originX),
@@ -301,7 +374,7 @@ const TechText = ({
       );
     };
 
-    const drawReveal = s => {
+    const drawReveal = (s: TechTextSettings) => {
       const radius = s.reach * dpr;
       const cx = lens.x * dpr;
       const cy = lens.y * dpr;
@@ -334,9 +407,9 @@ const TechText = ({
       ctx.globalAlpha = 1;
     };
 
-    const crisp = value => (Math.round(value * dpr) + 0.5) / dpr;
+    const crisp = (value: number) => (Math.round(value * dpr) + 0.5) / dpr;
 
-    const perimeterPoint = (distance, w, h) => {
+    const perimeterPoint = (distance: number, w: number, h: number): [number, number, number, number] => {
       let d = ((distance % (2 * (w + h))) + 2 * (w + h)) % (2 * (w + h));
       if (d < w) return [frame.x1 + d, frame.y1, 0, -1];
       d -= w;
@@ -347,7 +420,7 @@ const TechText = ({
       return [frame.x1, frame.y2 - d, -1, 0];
     };
 
-    const drawSpecks = (s, a) => {
+    const drawSpecks = (s: TechTextSettings, a: number) => {
       const w = frame.x2 - frame.x1;
       const h = frame.y2 - frame.y1;
       if (w < 2 || h < 2) return;
@@ -397,7 +470,7 @@ const TechText = ({
       }
     };
 
-    const drawFrame = s => {
+    const drawFrame = (s: TechTextSettings) => {
       const glyph = glyphs[frame.index];
       if (!glyph || frame.alpha < 0.01) return;
       const a = frame.alpha;
@@ -460,7 +533,7 @@ const TechText = ({
       ctx.fillText(label, Math.round(frame.x1), Math.round(frame.y1) - 7);
     };
 
-    const tick = now => {
+    const tick = (now: number) => {
       raf = 0;
       const s = settingsRef.current;
       if (!s) return;
@@ -595,12 +668,12 @@ const TechText = ({
       wake();
     };
 
-    const locate = e => {
+    const locate = (e: PointerEvent) => {
       const rect = container.getBoundingClientRect();
       pointer.x = e.clientX - rect.left;
       pointer.y = e.clientY - rect.top;
     };
-    const onMove = e => {
+    const onMove = (e: PointerEvent) => {
       locate(e);
       pointer.inside = true;
       wake();
@@ -610,7 +683,7 @@ const TechText = ({
       pointer.inside = false;
       wake();
     };
-    const onDown = e => {
+    const onDown = (e: PointerEvent) => {
       locate(e);
       pointer.inside = true;
       const s = settingsRef.current;
@@ -625,7 +698,7 @@ const TechText = ({
       }
       wake();
     };
-    const onUp = e => {
+    const onUp = (e: PointerEvent) => {
       if (dragging >= 0) {
         dragging = -1;
         container.releasePointerCapture?.(e.pointerId);

@@ -6,167 +6,127 @@ import aboutImg from '../assets/aditya-hero.jpg';
 import StrokeText from './StrokeText';
 import LogoLoop, { type LogoItem } from './ui/LogoLoop';
 import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiPython,
-  SiPytorch,
-  SiTailwindcss,
-  SiTensorflow,
-  SiHuggingface,
-  SiNodedotjs,
-  SiDocker,
-  SiPostgresql,
-  SiFastapi,
-  SiGit,
+  SiGithub,
+  SiInstagram,
+  SiYoutube,
+  SiWhatsapp,
+  SiLeetcode,
+  SiFacebook,
 } from 'react-icons/si';
+import { FaLinkedin } from 'react-icons/fa6';
 
-const OpenAIIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.8956zm16.0993 3.8558L12.5973 8.3829l2.02-1.1638a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.401-.686zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L8.909 9.2297V6.8974a.0662.0662 0 0 1 .0331-.0615l4.9807-2.8764a4.4992 4.4992 0 0 1 6.5283 4.9082zM12 13.5786l-2.6114-1.5074 2.6114-1.5074 2.6114 1.5074z" />
-  </svg>
-);
-
-const techLogos: LogoItem[] = [
+export const socialLogos: LogoItem[] = [
   {
     node: (
-      <span className="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full bg-[#14100D]/70 border border-[#8C6D4F]/25 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/60 transition-all duration-300">
-        <OpenAIIcon className="w-5 h-5 text-[#10A37F]" />
-        <span className="text-xs font-mono font-medium tracking-wider">OpenAI</span>
+      <span className="inline-flex items-center space-x-2.5 px-4 py-2 rounded-full bg-[#14100D]/85 border border-[#8C6D4F]/35 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/80 hover:bg-[#1D1713] transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.5)] group cursor-pointer">
+        <SiGithub className="w-4 h-4 text-[#D4AF37] group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
+        <span className="text-xs font-mono font-medium tracking-wide text-[#E8DFD8] group-hover:text-white transition-colors">
+          GitHub
+        </span>
+        <span className="text-xs text-[#8C6D4F] group-hover:text-[#D4AF37] transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0">
+          ↗
+        </span>
       </span>
     ),
-    title: 'OpenAI',
-    href: 'https://openai.com',
+    title: 'GitHub',
+    href: 'https://github.com/adityaonline000-bot',
+    ariaLabel: 'GitHub',
   },
   {
     node: (
-      <span className="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full bg-[#14100D]/70 border border-[#8C6D4F]/25 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/60 transition-all duration-300">
-        <SiPython className="w-5 h-5 text-[#3776AB]" />
-        <span className="text-xs font-mono font-medium tracking-wider">Python</span>
+      <span className="inline-flex items-center space-x-2.5 px-4 py-2 rounded-full bg-[#14100D]/85 border border-[#8C6D4F]/35 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/80 hover:bg-[#1D1713] transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.5)] group cursor-pointer">
+        <SiInstagram className="w-4 h-4 text-[#D4AF37] group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
+        <span className="text-xs font-mono font-medium tracking-wide text-[#E8DFD8] group-hover:text-white transition-colors">
+          Instagram
+        </span>
+        <span className="text-xs text-[#8C6D4F] group-hover:text-[#D4AF37] transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0">
+          ↗
+        </span>
       </span>
     ),
-    title: 'Python',
-    href: 'https://www.python.org',
+    title: 'Instagram',
+    href: 'https://www.instagram.com/adityakvideos_',
+    ariaLabel: 'Instagram',
   },
   {
     node: (
-      <span className="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full bg-[#14100D]/70 border border-[#8C6D4F]/25 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/60 transition-all duration-300">
-        <SiPytorch className="w-5 h-5 text-[#EE4C2C]" />
-        <span className="text-xs font-mono font-medium tracking-wider">PyTorch</span>
+      <span className="inline-flex items-center space-x-2.5 px-4 py-2 rounded-full bg-[#14100D]/85 border border-[#8C6D4F]/35 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/80 hover:bg-[#1D1713] transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.5)] group cursor-pointer">
+        <SiYoutube className="w-4 h-4 text-[#D4AF37] group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
+        <span className="text-xs font-mono font-medium tracking-wide text-[#E8DFD8] group-hover:text-white transition-colors">
+          YouTube
+        </span>
+        <span className="text-xs text-[#8C6D4F] group-hover:text-[#D4AF37] transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0">
+          ↗
+        </span>
       </span>
     ),
-    title: 'PyTorch',
-    href: 'https://pytorch.org',
+    title: 'YouTube',
+    href: 'https://youtube.com/@adityakvideos-o4t',
+    ariaLabel: 'YouTube',
   },
   {
     node: (
-      <span className="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full bg-[#14100D]/70 border border-[#8C6D4F]/25 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/60 transition-all duration-300">
-        <SiTensorflow className="w-5 h-5 text-[#FF6F00]" />
-        <span className="text-xs font-mono font-medium tracking-wider">TensorFlow</span>
+      <span className="inline-flex items-center space-x-2.5 px-4 py-2 rounded-full bg-[#14100D]/85 border border-[#8C6D4F]/35 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/80 hover:bg-[#1D1713] transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.5)] group cursor-pointer">
+        <SiWhatsapp className="w-4 h-4 text-[#D4AF37] group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
+        <span className="text-xs font-mono font-medium tracking-wide text-[#E8DFD8] group-hover:text-white transition-colors">
+          WhatsApp
+        </span>
+        <span className="text-xs text-[#8C6D4F] group-hover:text-[#D4AF37] transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0">
+          ↗
+        </span>
       </span>
     ),
-    title: 'TensorFlow',
-    href: 'https://www.tensorflow.org',
+    title: 'WhatsApp',
+    href: 'https://wa.me/919519429362',
+    ariaLabel: 'WhatsApp',
   },
   {
     node: (
-      <span className="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full bg-[#14100D]/70 border border-[#8C6D4F]/25 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/60 transition-all duration-300">
-        <SiHuggingface className="w-5 h-5 text-[#FFD21E]" />
-        <span className="text-xs font-mono font-medium tracking-wider">Hugging Face</span>
+      <span className="inline-flex items-center space-x-2.5 px-4 py-2 rounded-full bg-[#14100D]/85 border border-[#8C6D4F]/35 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/80 hover:bg-[#1D1713] transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.5)] group cursor-pointer">
+        <SiLeetcode className="w-4 h-4 text-[#D4AF37] group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
+        <span className="text-xs font-mono font-medium tracking-wide text-[#E8DFD8] group-hover:text-white transition-colors">
+          LeetCode
+        </span>
+        <span className="text-xs text-[#8C6D4F] group-hover:text-[#D4AF37] transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0">
+          ↗
+        </span>
       </span>
     ),
-    title: 'Hugging Face',
-    href: 'https://huggingface.co',
+    title: 'LeetCode',
+    href: 'https://leetcode.com/u/Z1DC8b0Uy1/',
+    ariaLabel: 'LeetCode',
   },
   {
     node: (
-      <span className="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full bg-[#14100D]/70 border border-[#8C6D4F]/25 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/60 transition-all duration-300">
-        <SiReact className="w-5 h-5 text-[#61DAFB]" />
-        <span className="text-xs font-mono font-medium tracking-wider">React</span>
+      <span className="inline-flex items-center space-x-2.5 px-4 py-2 rounded-full bg-[#14100D]/85 border border-[#8C6D4F]/35 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/80 hover:bg-[#1D1713] transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.5)] group cursor-pointer">
+        <SiFacebook className="w-4 h-4 text-[#D4AF37] group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
+        <span className="text-xs font-mono font-medium tracking-wide text-[#E8DFD8] group-hover:text-white transition-colors">
+          Facebook
+        </span>
+        <span className="text-xs text-[#8C6D4F] group-hover:text-[#D4AF37] transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0">
+          ↗
+        </span>
       </span>
     ),
-    title: 'React',
-    href: 'https://react.dev',
+    title: 'Facebook',
+    href: 'https://www.facebook.com/share/1cVbSwJTMR/',
+    ariaLabel: 'Facebook',
   },
   {
     node: (
-      <span className="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full bg-[#14100D]/70 border border-[#8C6D4F]/25 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/60 transition-all duration-300">
-        <SiNextdotjs className="w-5 h-5 text-white" />
-        <span className="text-xs font-mono font-medium tracking-wider">Next.js</span>
+      <span className="inline-flex items-center space-x-2.5 px-4 py-2 rounded-full bg-[#14100D]/85 border border-[#8C6D4F]/35 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/80 hover:bg-[#1D1713] transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.5)] group cursor-pointer">
+        <FaLinkedin className="w-4 h-4 text-[#D4AF37] group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
+        <span className="text-xs font-mono font-medium tracking-wide text-[#E8DFD8] group-hover:text-white transition-colors">
+          LinkedIn
+        </span>
+        <span className="text-xs text-[#8C6D4F] group-hover:text-[#D4AF37] transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0">
+          ↗
+        </span>
       </span>
     ),
-    title: 'Next.js',
-    href: 'https://nextjs.org',
-  },
-  {
-    node: (
-      <span className="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full bg-[#14100D]/70 border border-[#8C6D4F]/25 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/60 transition-all duration-300">
-        <SiTypescript className="w-5 h-5 text-[#3178C6]" />
-        <span className="text-xs font-mono font-medium tracking-wider">TypeScript</span>
-      </span>
-    ),
-    title: 'TypeScript',
-    href: 'https://www.typescriptlang.org',
-  },
-  {
-    node: (
-      <span className="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full bg-[#14100D]/70 border border-[#8C6D4F]/25 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/60 transition-all duration-300">
-        <SiTailwindcss className="w-5 h-5 text-[#06B6D4]" />
-        <span className="text-xs font-mono font-medium tracking-wider">Tailwind CSS</span>
-      </span>
-    ),
-    title: 'Tailwind CSS',
-    href: 'https://tailwindcss.com',
-  },
-  {
-    node: (
-      <span className="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full bg-[#14100D]/70 border border-[#8C6D4F]/25 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/60 transition-all duration-300">
-        <SiFastapi className="w-5 h-5 text-[#009688]" />
-        <span className="text-xs font-mono font-medium tracking-wider">FastAPI</span>
-      </span>
-    ),
-    title: 'FastAPI',
-    href: 'https://fastapi.tiangolo.com',
-  },
-  {
-    node: (
-      <span className="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full bg-[#14100D]/70 border border-[#8C6D4F]/25 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/60 transition-all duration-300">
-        <SiNodedotjs className="w-5 h-5 text-[#5FA04E]" />
-        <span className="text-xs font-mono font-medium tracking-wider">Node.js</span>
-      </span>
-    ),
-    title: 'Node.js',
-    href: 'https://nodejs.org',
-  },
-  {
-    node: (
-      <span className="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full bg-[#14100D]/70 border border-[#8C6D4F]/25 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/60 transition-all duration-300">
-        <SiDocker className="w-5 h-5 text-[#2496ED]" />
-        <span className="text-xs font-mono font-medium tracking-wider">Docker</span>
-      </span>
-    ),
-    title: 'Docker',
-    href: 'https://www.docker.com',
-  },
-  {
-    node: (
-      <span className="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full bg-[#14100D]/70 border border-[#8C6D4F]/25 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/60 transition-all duration-300">
-        <SiPostgresql className="w-5 h-5 text-[#4169E1]" />
-        <span className="text-xs font-mono font-medium tracking-wider">PostgreSQL</span>
-      </span>
-    ),
-    title: 'PostgreSQL',
-    href: 'https://www.postgresql.org',
-  },
-  {
-    node: (
-      <span className="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full bg-[#14100D]/70 border border-[#8C6D4F]/25 text-[#C4B7AA] hover:text-[#FFF2D6] hover:border-[#D4AF37]/60 transition-all duration-300">
-        <SiGit className="w-5 h-5 text-[#F05032]" />
-        <span className="text-xs font-mono font-medium tracking-wider">Git</span>
-      </span>
-    ),
-    title: 'Git',
-    href: 'https://git-scm.com',
+    title: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/adityayadav001/',
+    ariaLabel: 'LinkedIn',
   },
 ];
 
@@ -582,7 +542,7 @@ export const AboutSection: React.FC = () => {
 
         </div>
 
-        {/* ================= 3. CORE ENGINEERING ECOSYSTEM (<LogoLoop />) ================= */}
+        {/* ================= 3. DIRECT CHANNELS & DEVELOPER PROFILES (<LogoLoop />) ================= */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -593,24 +553,24 @@ export const AboutSection: React.FC = () => {
           <div className="flex items-center space-x-3 mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] animate-pulse" />
             <span
-              className="text-[10px] sm:text-[11px] font-mono tracking-[0.28em] uppercase text-[#8C6D4F]"
+              className="text-[10px] sm:text-[11px] font-mono tracking-[0.28em] uppercase text-[#C4B5A5]"
             >
-              CORE TECHNOLOGIES &amp; ENGINEERING ECOSYSTEM
+              DIRECT CHANNELS &amp; DEVELOPER PROFILES
             </span>
           </div>
 
           <div className="w-full relative py-2 overflow-hidden">
             <LogoLoop
-              logos={techLogos}
-              speed={65}
+              logos={socialLogos}
+              speed={55}
               direction="left"
-              logoHeight={32}
+              logoHeight={38}
               gap={24}
               pauseOnHover={true}
               scaleOnHover={true}
               fadeOut={true}
               fadeOutColor="#000000"
-              ariaLabel="Core Tech Stack & Tools"
+              ariaLabel="Direct Channels & Developer Profiles"
             />
           </div>
         </motion.div>

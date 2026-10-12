@@ -11,4 +11,17 @@ export default defineConfig({
       'motion/react': 'framer-motion',
     },
   },
+  build: {
+    chunkSizeWarningLimit: 1200,
+    rollupOptions: {
+      output: {
+        manualChunks(id: string) {
+          if (id.includes('node_modules/three/')) return 'vendor-three';
+          if (id.includes('node_modules/ogl/')) return 'vendor-ogl';
+          if (id.includes('node_modules/framer-motion/')) return 'vendor-motion';
+          if (id.includes('node_modules/gsap/')) return 'vendor-gsap';
+        },
+      },
+    },
+  },
 });

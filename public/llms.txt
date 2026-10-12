@@ -1,0 +1,34 @@
+# Aditya Yadav — Entity Dossier & Portfolio Index
+
+> Founder of NxtAura. AI/ML Engineer, Full-Stack Developer, and Technical Creator.
+> Canonical Domain: https://adityayadav.space
+
+## Professional Summary
+Aditya Yadav is an AI/ML Engineer, Full-Stack Developer, and Founder based in India. He specializes in practical AI systems, computer vision algorithms, real-time biometric active liveness verification, deepfake detection, and production-grade full-stack web platforms. As the founder of NxtAura, he designs automated intelligent software architectures that solve complex business workflows.
+
+## Core Specializations
+- Computer Vision: Facial landmark tracking (468 points), active liveness verification (blink and head pose analysis), and deepfake classification.
+- AI & Machine Learning: OpenCV, MediaPipe, PyTorch, Scikit-Learn, and intelligent autonomous agents.
+- Full-Stack Architecture: Python, FastAPI, TypeScript, React 19, Next.js, Node.js, and high-performance WebGL (Three.js, OGL).
+- Creator & Community: Technical content creator under @adityakvideos_ sharing computer vision breakdowns, AI engineering tutorials, and founder developer journeys.
+
+## Key Projects
+- SmartFaceGuard: Browser-based biometric identity platform combining real-time face detection, liveness analysis, and deepfake verification.
+- Base44: Scalable multi-tenant cloud management platform with real-time analytics streaming.
+- Automated Vision Pipelines: Real-time pose estimation and automated gesture classification systems.
+
+## Verified Honors, Awards & Credentials
+- Top Freelancer GRIT Award (2025): Honors excellence in freelance technical architecture and end-to-end client delivery.
+- 25 Under 5 AI Milestone Award: NxtWave CCBP 4.0 Academy (Gold Seal).
+- Smart India Hackathon (SIH 2026): National Finalist.
+- OpenAI Delhi Hackathon: Builder & Contributor.
+- Certifications: Databricks Generative AI Fundamentals, HackerRank Python Certified.
+
+## Canonical Web Resources & Links
+- Website: https://adityayadav.space
+- GitHub: https://github.com/adityaonline000-bot
+- LinkedIn: https://www.linkedin.com/in/adityayadav001/
+- YouTube: https://youtube.com/@adityakvideos-o4t
+- Instagram: https://www.instagram.com/adityakvideos_/
+- WhatsApp: https://wa.me/919519429362
+- Direct Inquiries: adityaonline000@gmail.com

@@ -139,7 +139,7 @@ const StrokeText: React.FC<StrokeTextProps> = ({
     const fillEnabled = fillMode !== 'none';
     const useWipe = fillEnabled && fillMode === 'wipe';
     const fillDuration = Math.max(0.4, drawDuration * 0.5);
-    const staggerConfig = reverse ? { each: stagger, from: 'end' } : stagger;
+    const staggerConfig = reverse ? ({ each: stagger, from: 'end' } as const) : stagger;
     const targets = [...strokes, ...fills, wipe].filter(Boolean);
 
     const setStart = () => {

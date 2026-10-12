@@ -145,12 +145,14 @@ class x {
 
   #u(e) {
     this.#s = e[0]?.isIntersecting ?? true;
-    this.#s ? this.#w() : this.#z();
+    if (this.#s) this.#w();
+    else this.#z();
   }
 
   #v() {
     if (this.#s) {
-      document.hidden ? this.#z() : this.#w();
+      if (document.hidden) this.#z();
+      else this.#w();
     }
   }
 
@@ -570,8 +572,8 @@ class Z extends d {
       const room = new z();
       envTexture = pmrem.fromScene(room).texture;
       pmrem.dispose();
-    } catch (e) {
-      // Fallback if environment map creation fails
+    } catch (error) {
+      console.warn('Ballpit environment map creation failed; using the material fallback.', error);
     }
 
     const geom = new g(1, 24, 16);
@@ -760,8 +762,8 @@ export const Ballpit: React.FC<BallpitProps> = ({ className = '', followCursor =
       if (spheresInstanceRef.current) {
         try {
           spheresInstanceRef.current.dispose();
-        } catch (e) {
-          // ignore
+        } catch (error) {
+          console.error('Failed to dispose Ballpit:', error);
         }
         spheresInstanceRef.current = null;
       }
@@ -773,8 +775,8 @@ export const Ballpit: React.FC<BallpitProps> = ({ className = '', followCursor =
     if (spheresInstanceRef.current) {
       try {
         spheresInstanceRef.current.updateConfig({ followCursor, ...props });
-      } catch (e) {
-        // ignore
+      } catch (error) {
+        console.error('Failed to update Ballpit configuration:', error);
       }
     }
   }, [props, followCursor]);

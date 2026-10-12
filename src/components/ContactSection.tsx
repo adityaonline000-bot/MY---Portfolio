@@ -1,54 +1,7 @@
 // src/components/ContactSection.tsx
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import {
-  SiGithub,
-  SiInstagram,
-  SiYoutube,
-  SiWhatsapp,
-  SiLeetcode,
-  SiFacebook,
-} from 'react-icons/si';
-import { FaLinkedin } from 'react-icons/fa6';
 import Magnetic from './motion/Magnetic';
-
-export const socialLinks = [
-  {
-    name: 'GitHub',
-    url: 'https://github.com/adityaonline000-bot',
-    icon: SiGithub,
-  },
-  {
-    name: 'Instagram',
-    url: 'https://www.instagram.com/adityakvideos_',
-    icon: SiInstagram,
-  },
-  {
-    name: 'YouTube',
-    url: 'https://youtube.com/@adityakvideos-o4t',
-    icon: SiYoutube,
-  },
-  {
-    name: 'WhatsApp',
-    url: 'https://wa.me/919519429362',
-    icon: SiWhatsapp,
-  },
-  {
-    name: 'LeetCode',
-    url: 'https://leetcode.com/u/Z1DC8b0Uy1/',
-    icon: SiLeetcode,
-  },
-  {
-    name: 'Facebook',
-    url: 'https://www.facebook.com/share/1cVbSwJTMR/',
-    icon: SiFacebook,
-  },
-  {
-    name: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/adityayadav001/',
-    icon: FaLinkedin,
-  },
-];
 
 export const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -56,6 +9,11 @@ export const ContactSection: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const subject = encodeURIComponent(`Project Inquiry: ${formData.name} (via adityayadav.space)`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nProject Scope & Requirements:\n${formData.message}\n`
+    );
+    window.location.href = `mailto:adityaonline000@gmail.com?subject=${subject}&body=${body}`;
     setSent(true);
   };
 
@@ -132,16 +90,39 @@ export const ContactSection: React.FC = () => {
             <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/60" />
 
             {sent ? (
-              <div className="py-16 text-center space-y-4">
-                <div className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-[#D4AF37] text-[#D4AF37] text-sm">
+              <div className="py-12 text-center space-y-4">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-[#D4AF37] text-[#D4AF37] text-lg bg-[#D4AF37]/10 shadow-[0_0_20px_rgba(212,175,55,0.25)]">
                   ✓
                 </div>
                 <h3 className="text-3xl text-white font-normal uppercase" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-                  TRANSMISSION DELIVERED
+                  TRANSMISSION DISPATCHED
                 </h3>
-                <p className="text-xs text-[#A8988B] font-light" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                  Message registered successfully. I will get back to you shortly.
+                <p className="text-xs text-[#A8988B] font-light max-w-md mx-auto leading-relaxed" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                  Your email client has been prepared with your inquiry details. If it did not launch automatically, tap below or reach out directly on WhatsApp.
                 </p>
+                <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
+                  <a
+                    href={`mailto:adityaonline000@gmail.com?subject=${encodeURIComponent(`Project Inquiry: ${formData.name}`)}&body=${encodeURIComponent(formData.message)}`}
+                    className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-sm border border-[#D4AF37] bg-[#D4AF37]/15 text-[#F7E7C4] text-xs font-mono uppercase tracking-wider hover:bg-[#D4AF37]/25 transition-colors"
+                  >
+                    <span>Open Mail Client ↗</span>
+                  </a>
+                  <a
+                    href="https://wa.me/919519429362"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-sm border border-[#8C6D4F]/50 bg-[#120F0C] text-[#E8DFD8] text-xs font-mono uppercase tracking-wider hover:border-[#D4AF37] transition-colors"
+                  >
+                    <span>Chat on WhatsApp ↗</span>
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setSent(false)}
+                    className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-sm border border-[#8C6D4F]/30 text-[#8C6D4F] text-xs font-mono uppercase tracking-wider hover:text-white transition-colors"
+                  >
+                    <span>Reset</span>
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -209,56 +190,27 @@ export const ContactSection: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Direct Connections & Developer Profiles Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-14 max-w-4xl mx-auto w-full"
-        >
-          {/* Section Indicator */}
-          <div className="flex items-center justify-center space-x-3 mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] animate-pulse" />
-            <span
-              className="text-[10.5px] font-mono tracking-[0.25em] uppercase text-[#C4B5A5]"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
-            >
-              DIRECT CHANNELS &amp; DEVELOPER PROFILES
-            </span>
-          </div>
-
-          {/* Connection Cards / Tiles */}
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-3.5">
-            {socialLinks.map((social) => {
-              const Icon = social.icon;
-              return (
-                <Magnetic key={social.name} strength={0.15}>
-                  <a
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.name}
-                    className="group flex items-center space-x-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-[#14100D]/80 border border-[#8C6D4F]/30 hover:border-[#D4AF37]/80 hover:bg-[#1D1713] transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.5)] focus:outline-none focus:ring-1 focus:ring-[#D4AF37]"
-                  >
-                    <Icon className="w-4 h-4 text-[#D4AF37] group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
-                    <span
-                      className="text-xs font-mono tracking-wide text-[#E8DFD8] group-hover:text-white transition-colors"
-                    >
-                      {social.name}
-                    </span>
-                    <span className="text-xs text-[#8C6D4F] group-hover:text-[#D4AF37] transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0">
-                      ↗
-                    </span>
-                  </a>
-                </Magnetic>
-              );
-            })}
-          </div>
-        </motion.div>
+        {/* Direct Channels Strip */}
+        <div className="max-w-2xl mx-auto w-full mt-6 flex flex-wrap items-center justify-between gap-3 px-2 text-[11px] font-mono text-[#8C6D4F]">
+          <a
+            href="mailto:adityaonline000@gmail.com"
+            className="hover:text-[#D4AF37] transition-colors flex items-center space-x-1.5"
+          >
+            <span>✉ adityaonline000@gmail.com</span>
+          </a>
+          <a
+            href="https://wa.me/919519429362"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#D4AF37] transition-colors flex items-center space-x-1.5"
+          >
+            <span>💬 +91 95194 29362</span>
+          </a>
+          <span className="text-[#8C6D4F]/70">Typical response &lt; 24h</span>
+        </div>
 
         {/* System Footer Line */}
-        <div className="pt-16 mt-16 border-t border-[#8C6D4F]/15 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-4">
+        <div className="pt-12 mt-12 border-t border-[#8C6D4F]/15 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-4">
           <span className="text-[10px] font-mono tracking-widest text-[#8C6D4F] uppercase">
             ADITYA YADAV // NXTAURA
           </span>
@@ -272,4 +224,5 @@ export const ContactSection: React.FC = () => {
   );
 };
 
-export default ContactSection;
+export default ContactSection;
+

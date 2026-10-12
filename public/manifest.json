@@ -1,0 +1,17 @@
+{
+  "short_name": "Aditya Yadav",
+  "name": "Aditya Yadav — Founder & AI/ML Engineer",
+  "description": "Founder of NxtAura. Building AI-powered products, computer vision systems, active liveness verification, and scalable full-stack architectures.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#050403",
+  "theme_color": "#050403",
+  "display": "standalone",
+  "orientation": "portrait-primary"
+}

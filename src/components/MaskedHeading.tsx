@@ -4,7 +4,7 @@ import './MaskedHeading.css';
 
 export interface MaskedHeadingProps {
   text?: string;
-  tag?: keyof React.JSX.IntrinsicElements;
+  tag?: 'div' | 'h1' | 'h2' | 'h3' | 'span';
   mediaType?: 'image' | 'video';
   src?: string;
   poster?: string;
@@ -225,7 +225,6 @@ export const MaskedHeading: React.FC<MaskedHeadingProps> = ({
   const filterStyle = `brightness(${brightness}) saturate(${saturation}) ${grayscale ? 'grayscale(100%)' : ''} drop-shadow(0 2px 14px rgba(212,175,55,0.4))`;
 
   return (
-    // @ts-expect-error Tag can be custom HTML element
     <Tag
       ref={rootRef}
       className={`masked-heading ${className}`.trim()}

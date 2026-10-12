@@ -12,6 +12,19 @@ export interface StickyScrollItem {
   content?: React.ReactNode | any;
 }
 
+const backgroundColors = [
+  "#0B0A08",
+  "#000000",
+  "#120F0C",
+  "#080706",
+];
+const linearGradients = [
+  "linear-gradient(to bottom right, #D4AF37, #8C6D4F)",
+  "linear-gradient(to bottom right, #06b6d4, #10b981)",
+  "linear-gradient(to bottom right, #ec4899, #6366f1)",
+  "linear-gradient(to bottom right, #f97316, #eab308)",
+];
+
 export const StickyScroll = ({
   content,
   contentClassName,
@@ -41,19 +54,6 @@ export const StickyScroll = ({
     );
     setActiveCard(closestBreakpointIndex);
   });
-
-  const backgroundColors = [
-    "#0B0A08", // deep obsidian
-    "#000000", // pure black
-    "#120F0C", // dark studio bronze
-    "#080706", // cosmic noir
-  ];
-  const linearGradients = [
-    "linear-gradient(to bottom right, #D4AF37, #8C6D4F)", // gold to bronze
-    "linear-gradient(to bottom right, #06b6d4, #10b981)", // cyan to emerald
-    "linear-gradient(to bottom right, #ec4899, #6366f1)", // pink to indigo
-    "linear-gradient(to bottom right, #f97316, #eab308)", // orange to amber
-  ];
 
   const [backgroundGradient, setBackgroundGradient] = useState(
     linearGradients[0],

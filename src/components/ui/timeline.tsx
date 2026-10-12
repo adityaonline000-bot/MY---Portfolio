@@ -308,8 +308,8 @@ export default function Timeline({
           type: "chars, words, lines",
           mask: "lines",
         });
-      } catch (e) {
-        // Fallback gracefully if split text cannot segment element
+      } catch (error) {
+        console.warn('Timeline text animation could not split its content.', error);
       }
     });
 

@@ -41,7 +41,7 @@ export const CardStack: React.FC<CardStackProps> = ({
   const [isFannedOut, setIsFannedOut] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [dragDirection, setDragDirection] = useState<number>(0);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     setCards(items);

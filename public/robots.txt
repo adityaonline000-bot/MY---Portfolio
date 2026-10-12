@@ -1,0 +1,9 @@
+# Robots.txt for adityayadav.space
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://adityayadav.space/sitemap.xml
+
+# LLM / AI Search Index
+# See https://adityayadav.space/llms.txt

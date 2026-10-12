@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import Preloader from './components/Preloader';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
@@ -14,7 +14,8 @@ import { CustomCursor } from './components/motion/CustomCursor';
 import { PageTransition } from './components/motion/PageTransition';
 import { SectionScrollProvider } from './components/motion/SectionScrollController';
 import { usePathname } from './hooks/usePathname';
-import SoftAurora from './components/SoftAurora';
+
+const SoftAurora = lazy(() => import('./components/SoftAurora'));
 
 function App() {
   const pathname = usePathname();
@@ -137,23 +138,27 @@ function App() {
                 showAurora ? 'opacity-90' : 'opacity-0'
               }`}
             >
-              <SoftAurora
-                speed={0.6}
-                scale={1.5}
-                brightness={1}
-                color1="#f7f7f7"
-                color2="#e100ff"
-                noiseFrequency={2.5}
-                noiseAmplitude={1}
-                bandHeight={0.5}
-                bandSpread={1}
-                octaveDecay={0.1}
-                layerOffset={0}
-                colorSpeed={1}
-                enableMouseInteraction
-                mouseInfluence={0.25}
-                paused={!showAurora}
-              />
+              {showAurora && (
+                <Suspense fallback={null}>
+                  <SoftAurora
+                    speed={0.6}
+                    scale={1.5}
+                    brightness={1}
+                    color1="#f7f7f7"
+                    color2="#e100ff"
+                    noiseFrequency={2.5}
+                    noiseAmplitude={1}
+                    bandHeight={0.5}
+                    bandSpread={1}
+                    octaveDecay={0.1}
+                    layerOffset={0}
+                    colorSpeed={1}
+                    enableMouseInteraction
+                    mouseInfluence={0.25}
+                    paused={false}
+                  />
+                </Suspense>
+              )}
               {/* Subtle dark tint overlay to keep perfect typographic contrast */}
               <div className="absolute inset-0 bg-[#050403]/30 pointer-events-none" />
             </div>

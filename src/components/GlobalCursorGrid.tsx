@@ -1,4 +1,3 @@
-import React from 'react';
 import { usePathname } from '../hooks/usePathname';
 import CursorGrid from './CursorGrid';
 import './GlobalCursorGrid.css';
