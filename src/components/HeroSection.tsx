@@ -215,6 +215,7 @@ export const HeroSection: React.FC = () => {
             {/* Download Resume Button */}
             <motion.a
               href="/resume.pdf"
+              download="Aditya_Yadav_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.04 }}
