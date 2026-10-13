@@ -463,11 +463,11 @@ export const GlassJarProjects: React.FC = () => {
   const isMobile = viewportDimensions.width < 768;
   // Prominently enlarged paper sizing: fills comfortable viewport height and width so details are immediately readable!
   const paperSceneHeight = isMobile
-    ? Math.min(580, Math.max(380, viewportDimensions.height - 130))
+    ? Math.min(580, Math.max(300, viewportDimensions.height - 110))
     : Math.min(820, Math.max(540, viewportDimensions.height - 120));
   const paperWidth = Math.min(
-    isMobile ? viewportDimensions.width - 24 : 680,
-    Math.round(paperSceneHeight * 0.8)
+    isMobile ? Math.max(270, viewportDimensions.width - 20) : 680,
+    Math.round(paperSceneHeight * 0.85)
   );
   const paperHeight = Math.round(paperWidth * 1.25);
 
@@ -575,7 +575,7 @@ export const GlassJarProjects: React.FC = () => {
           coins drop in. Once all 4 coins have dropped, the pin naturally releases
           and the frame moves with scrolling to the next section.
           ========================================================================= */}
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-between items-center px-4 sm:px-8 py-5 sm:py-7 select-none z-20 overflow-hidden">
+      <div className="sticky top-0 min-h-[100svh] h-[100dvh] w-full flex flex-col justify-between items-center px-3 sm:px-8 py-3.5 sm:py-6 select-none z-20 overflow-hidden">
         
         {/* =========================================================================
             HEADER SECTION (Integrated inside the pinned stage)
@@ -672,7 +672,7 @@ export const GlassJarProjects: React.FC = () => {
 
           {/* The Glass Jar Body */}
           <div
-            className={`glass-jar w-[280px] sm:w-[340px] md:w-[370px] h-[350px] sm:h-[400px] relative overflow-visible z-10 flex flex-col justify-end p-5 ${
+            className={`glass-jar w-[250px] xs:w-[280px] sm:w-[340px] md:w-[370px] h-[290px] xs:h-[330px] sm:h-[400px] relative overflow-visible z-10 flex flex-col justify-end p-3.5 sm:p-5 ${
               jarShakeActive ? 'jar-shake-active' : ''
             }`}
           >
@@ -714,7 +714,7 @@ export const GlassJarProjects: React.FC = () => {
             )}
 
             {/* Coins Settled inside Jar Floor */}
-            <div className="relative w-full h-[210px] flex items-center justify-center z-20 pointer-events-auto">
+            <div className="relative w-full h-[180px] sm:h-[210px] flex items-center justify-center z-20 pointer-events-auto">
               {projectsData.map((project, idx) => {
                 const isDropped = coinsDropped > idx;
                 const isHovered = hoveredCoinIndex === idx;
@@ -729,14 +729,14 @@ export const GlassJarProjects: React.FC = () => {
                     onMouseLeave={() => setHoveredCoinIndex(null)}
                     style={{
                       bottom: '0px',
-                      left: 'calc(50% - 44px)',
+                      left: 'calc(50% - 38px)',
                       zIndex: 25 + idx,
                       ['--rest-x' as string]: `${project.coinRestPosition.x}px`,
                       ['--rest-y' as string]: `${project.coinRestPosition.y}px`,
                       ['--rest-rot' as string]: `${project.coinRestPosition.rotate}deg`,
                       animation: `coinDropPhysics 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.25) forwards`,
                     }}
-                    className="project-coin-item w-[84px] sm:w-[90px] h-[84px] sm:h-[90px] group"
+                    className="project-coin-item w-[76px] sm:w-[90px] h-[76px] sm:h-[90px] group"
                   >
                     {/* 3D Coin Edge Layer */}
                     <div className="coin-3d-edge" />
@@ -846,24 +846,24 @@ export const GlassJarProjects: React.FC = () => {
                   exit={{ opacity: 0, scale: 0.85, y: 25 }}
                   transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
                   onClick={(e) => e.stopPropagation()}
-                  className="relative flex flex-col items-center justify-center my-auto"
-                  style={{ width: `${Math.max(paperWidth, 340)}px`, maxWidth: '96vw' }}
+                  className="relative flex flex-col items-center justify-center my-auto w-full"
+                  style={{ width: `${Math.min(paperWidth, viewportDimensions.width - 16)}px`, maxWidth: 'calc(100vw - 16px)' }}
                 >
                   {/* Floating Top Header Bar */}
-                  <div className="flex items-center justify-between w-full mb-3 px-1 select-none">
-                    <div className="flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-[#8C6D4F]/40 shadow-xl">
-                      <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
-                      <span className="text-xs font-mono font-bold tracking-widest text-[#D4AF37] uppercase">
-                        ARCHIVAL SPEC // {selectedProject.number}
+                  <div className="flex items-center justify-between w-full mb-2.5 px-0.5 select-none gap-2">
+                    <div className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-[#8C6D4F]/40 shadow-xl">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] animate-pulse" />
+                      <span className="text-[10px] sm:text-xs font-mono font-bold tracking-wider sm:tracking-widest text-[#D4AF37] uppercase">
+                        SPEC // {selectedProject.number}
                       </span>
                     </div>
 
-                    <div className="flex items-center space-x-1.5">
+                    <div className="flex items-center space-x-1 sm:space-x-1.5 ml-auto">
                       <button
                         type="button"
                         onClick={handlePrevProject}
                         aria-label="Previous project"
-                        className="p-2 rounded-full border border-[#8C6D4F]/40 bg-black/75 backdrop-blur-md text-[#C4B5A5] hover:text-[#FFF2D6] hover:border-[#D4AF37] transition-all cursor-pointer shadow-md"
+                        className="p-1.5 sm:p-2 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-full border border-[#8C6D4F]/40 bg-black/75 backdrop-blur-md text-[#C4B5A5] hover:text-[#FFF2D6] hover:border-[#D4AF37] transition-all cursor-pointer shadow-md"
                       >
                         <ChevronLeft className="w-4 h-4" />
                       </button>
@@ -871,17 +871,18 @@ export const GlassJarProjects: React.FC = () => {
                         type="button"
                         onClick={handleNextProject}
                         aria-label="Next project"
-                        className="p-2 rounded-full border border-[#8C6D4F]/40 bg-black/75 backdrop-blur-md text-[#C4B5A5] hover:text-[#FFF2D6] hover:border-[#D4AF37] transition-all cursor-pointer shadow-md"
+                        className="p-1.5 sm:p-2 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-full border border-[#8C6D4F]/40 bg-black/75 backdrop-blur-md text-[#C4B5A5] hover:text-[#FFF2D6] hover:border-[#D4AF37] transition-all cursor-pointer shadow-md"
                       >
                         <ChevronRight className="w-4 h-4" />
                       </button>
                       <button
                         type="button"
                         onClick={handleClosePaper}
-                        className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full border border-[#8C6D4F]/45 bg-black/80 backdrop-blur-md text-[#F7E7C4] hover:bg-[#2B2015] hover:border-[#D4AF37] text-xs font-mono font-semibold uppercase tracking-wider transition-all cursor-pointer shadow-lg ml-1"
+                        aria-label="Close project specification"
+                        className="flex items-center space-x-1 px-3 py-1.5 rounded-full border border-[#8C6D4F]/45 bg-black/80 backdrop-blur-md text-[#F7E7C4] hover:bg-[#2B2015] hover:border-[#D4AF37] text-[11px] sm:text-xs font-mono font-semibold uppercase tracking-wider transition-all cursor-pointer shadow-lg ml-1 min-h-[36px]"
                       >
-                        <X className="w-4 h-4 text-[#D4AF37]" />
-                        <span>FOLD &amp; CLOSE</span>
+                        <X className="w-3.5 h-3.5 text-[#D4AF37]" />
+                        <span>CLOSE</span>
                       </button>
                     </div>
                   </div>
@@ -932,7 +933,7 @@ export const GlassJarProjects: React.FC = () => {
                         href={selectedProject.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center space-x-2 px-5 py-2 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B38F2D] text-[#140E06] hover:brightness-110 hover:shadow-[0_0_25px_rgba(212,175,55,0.45)] transition-all text-xs font-mono font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(212,175,55,0.25)] cursor-pointer"
+                        className="inline-flex items-center space-x-2 px-5 py-2 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B38F2D] text-[#140E06] hover:brightness-110 hover:shadow-[0_0_25px_rgba(212,175,55,0.45)] transition-all text-xs font-mono font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(212,175,55,0.25)] cursor-pointer min-h-[40px]"
                       >
                         <span>VISIT LIVE SYSTEM</span>
                         <ExternalLink className="w-3.5 h-3.5" />
@@ -944,7 +945,7 @@ export const GlassJarProjects: React.FC = () => {
                         href={selectedProject.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center space-x-2 px-4 py-2 rounded-full border border-[#8C6D4F]/40 bg-black/70 backdrop-blur-md hover:bg-[#1A1510] hover:border-[#D4AF37] text-[#E8DFD8] transition-all text-xs font-mono font-semibold uppercase tracking-wider cursor-pointer shadow-lg"
+                        className="inline-flex items-center space-x-2 px-4 py-2 rounded-full border border-[#8C6D4F]/40 bg-black/70 backdrop-blur-md hover:bg-[#1A1510] hover:border-[#D4AF37] text-[#E8DFD8] transition-all text-xs font-mono font-semibold uppercase tracking-wider cursor-pointer shadow-lg min-h-[40px]"
                       >
                         <SiGithub className="w-3.5 h-3.5 text-[#D4AF37]" />
                         <span>REPOSITORY</span>
@@ -955,7 +956,7 @@ export const GlassJarProjects: React.FC = () => {
                       <a
                         href="#contact"
                         onClick={handleClosePaper}
-                        className="inline-flex items-center space-x-2 px-5 py-2 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B38F2D] text-[#140E06] hover:brightness-110 hover:shadow-[0_0_25px_rgba(212,175,55,0.45)] transition-all text-xs font-mono font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(212,175,55,0.25)] cursor-pointer"
+                        className="inline-flex items-center space-x-2 px-5 py-2 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B38F2D] text-[#140E06] hover:brightness-110 hover:shadow-[0_0_25px_rgba(212,175,55,0.45)] transition-all text-xs font-mono font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(212,175,55,0.25)] cursor-pointer min-h-[40px]"
                       >
                         <span>INQUIRE / ARCHITECTURE SPECS</span>
                         <ExternalLink className="w-3.5 h-3.5" />

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, memo } from 'react';
+import React, { useEffect, useRef, useState, memo } from 'react';
 
 // --- Type Definitions ---
 type IconType = 'html' | 'css' | 'javascript' | 'react' | 'node' | 'tailwind';
@@ -21,10 +21,6 @@ interface SkillConfig {
   label: string;
 }
 
-interface OrbitingSkillProps {
-  config: SkillConfig;
-  angle: number;
-}
 
 interface GlowingOrbitPathProps {
   radius: number;
@@ -164,24 +160,32 @@ const skillsConfig: SkillConfig[] = [
 ];
 
 // --- Memoized Orbiting Skill Component ---
-const OrbitingSkill = memo(({ config, angle }: OrbitingSkillProps) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const { orbitRadius, size, iconType, label } = config;
+interface OrbitingSkillItemProps {
+  config: SkillConfig;
+  setRef: (el: HTMLDivElement | null) => void;
+}
 
-  const x = Math.cos(angle) * orbitRadius;
-  const y = Math.sin(angle) * orbitRadius;
+const OrbitingSkill = memo(({ config, setRef }: OrbitingSkillItemProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const { orbitRadius, size, iconType, label, phaseShift } = config;
+
+  const initialX = Math.cos(phaseShift) * orbitRadius;
+  const initialY = Math.sin(phaseShift) * orbitRadius;
 
   return (
     <div
-      className="absolute top-1/2 left-1/2 transition-all duration-300 ease-out"
+      ref={setRef}
+      className="absolute top-1/2 left-1/2 will-change-transform"
       style={{
         width: `${size}px`,
         height: `${size}px`,
-        transform: `translate(calc(${x}px - 50%), calc(${y}px - 50%))`,
+        transform: `translate(calc(${initialX.toFixed(2)}px - 50%), calc(${initialY.toFixed(2)}px - 50%))`,
         zIndex: isHovered ? 20 : 10,
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={() => setIsHovered(true)}
+      onTouchEnd={() => setIsHovered(false)}
     >
       <div
         className={`
@@ -265,11 +269,13 @@ GlowingOrbitPath.displayName = 'GlowingOrbitPath';
 
 // --- Main OrbitingSkills Component ---
 export default function OrbitingSkills() {
-  const [time, setTime] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const isPausedRef = useRef(false);
+  const timeRef = useRef(0);
+  const itemRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   useEffect(() => {
-    if (isPaused) return;
+    const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
 
     let animationFrameId: number;
     let lastTime = performance.now();
@@ -278,13 +284,25 @@ export default function OrbitingSkills() {
       const deltaTime = (currentTime - lastTime) / 1000;
       lastTime = currentTime;
 
-      setTime(prevTime => prevTime + deltaTime);
+      if (!isPausedRef.current) {
+        timeRef.current += deltaTime;
+        const t = timeRef.current;
+        skillsConfig.forEach((config) => {
+          const el = itemRefs.current[config.id];
+          if (!el) return;
+          const angle = t * config.speed + config.phaseShift;
+          const x = Math.cos(angle) * config.orbitRadius;
+          const y = Math.sin(angle) * config.orbitRadius;
+          el.style.transform = `translate(calc(${x.toFixed(2)}px - 50%), calc(${y.toFixed(2)}px - 50%))`;
+        });
+      }
+
       animationFrameId = requestAnimationFrame(animate);
     };
 
     animationFrameId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrameId);
-  }, [isPaused]);
+  }, []);
 
   const orbitConfigs: Array<{ radius: number; glowColor: GlowColor; delay: number }> = [
     { radius: 100, glowColor: 'cyan', delay: 0 },
@@ -292,11 +310,13 @@ export default function OrbitingSkills() {
   ];
 
   return (
-    <div className="relative w-full flex items-center justify-center overflow-hidden py-4">
+    <div className="relative w-full flex items-center justify-center overflow-hidden py-3">
       <div 
-        className="relative w-[320px] h-[320px] sm:w-[400px] sm:h-[400px] md:w-[440px] md:h-[440px] flex items-center justify-center select-none"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
+        className="relative w-[320px] h-[320px] sm:w-[400px] sm:h-[400px] md:w-[440px] md:h-[440px] flex items-center justify-center select-none scale-[0.74] xs:scale-[0.84] sm:scale-100 origin-center"
+        onMouseEnter={() => { isPausedRef.current = true; }}
+        onMouseLeave={() => { isPausedRef.current = false; }}
+        onTouchStart={() => { isPausedRef.current = true; }}
+        onTouchEnd={() => { isPausedRef.current = false; }}
       >
         {/* Central Code / Tech Icon */}
         <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#1E1914] via-[#120F0C] to-[#0A0806] border border-[#8C6D4F]/50 rounded-full flex items-center justify-center z-10 relative shadow-2xl">
@@ -328,16 +348,15 @@ export default function OrbitingSkills() {
         ))}
 
         {/* Render orbiting skill icons */}
-        {skillsConfig.map((config) => {
-          const angle = time * config.speed + (config.phaseShift || 0);
-          return (
-            <OrbitingSkill
-              key={config.id}
-              config={config}
-              angle={angle}
-            />
-          );
-        })}
+        {skillsConfig.map((config) => (
+          <OrbitingSkill
+            key={config.id}
+            config={config}
+            setRef={(el) => {
+              itemRefs.current[config.id] = el;
+            }}
+          />
+        ))}
       </div>
     </div>
   );

@@ -170,7 +170,7 @@ export const ExperienceSection: React.FC = () => {
       <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-[38rem] h-[38rem] bg-[#8C6D4F]/[0.03] rounded-full blur-[150px] pointer-events-none" />
 
       {/* 1 & 2: Main Header and Builder Timeline */}
-      <div className="max-w-5xl mx-auto w-full px-6 sm:px-12 lg:px-20 relative z-10">
+      <div className="max-w-5xl mx-auto w-full px-4 sm:px-12 lg:px-20 relative z-10">
         
         {/* ==================================================================== */}
         {/* 1. SECTION HEADER (Consistent with global portfolio layout)          */}
@@ -308,7 +308,7 @@ export const ExperienceSection: React.FC = () => {
       {/* ==================================================================== */}
       {/* 3. VERIFIED ACHIEVEMENTS & RECOGNITION (Full-Bleed Stage)             */}
       {/* ==================================================================== */}
-      <div className="max-w-5xl mx-auto w-full px-6 sm:px-12 lg:px-20 pt-16 border-t border-[#8C6D4F]/20 flex flex-col items-center relative z-10">
+      <div className="max-w-5xl mx-auto w-full px-4 sm:px-12 lg:px-20 pt-16 border-t border-[#8C6D4F]/20 flex flex-col items-center relative z-10">
         
         {/* Eyebrow Subheader */}
         <div className="flex items-center space-x-3 mb-4 select-none">
@@ -341,7 +341,7 @@ export const ExperienceSection: React.FC = () => {
               key={preset.id}
               type="button"
               onClick={() => setActivePreset(preset.id)}
-              className={`px-3.5 py-1.5 rounded-sm border text-[10px] font-mono tracking-[0.18em] uppercase transition-all duration-300 ${
+              className={`px-3.5 py-1.5 min-h-[40px] flex items-center justify-center rounded-sm border text-[10px] font-mono tracking-[0.18em] uppercase transition-all duration-300 cursor-pointer ${
                 activePreset === preset.id
                   ? 'border-[#D4AF37] bg-[#D4AF37]/15 text-[#F7E7C4] shadow-[0_0_15px_rgba(212,175,55,0.3)]'
                   : 'border-[#8C6D4F]/30 bg-[#120F0C]/60 text-[#8C6D4F] hover:text-[#E8DFD8] hover:border-[#8C6D4F]/60'
@@ -387,9 +387,9 @@ export const ExperienceSection: React.FC = () => {
         )}
 
         {/* Subtle Interactive Instruction Tooltip at bottom */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center space-x-2 px-3 py-1 bg-black/60 border border-[#8C6D4F]/20 rounded-full backdrop-blur-md pointer-events-none text-[9.5px] font-mono text-[#C4B7AA] tracking-wider uppercase z-20">
-          <Compass className="w-3 h-3 text-[#D4AF37]" />
-          <span>DRAG TO FLEX • CLICK TO ZOOM • ESC TO CLOSE</span>
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center space-x-2 px-3 py-1 bg-black/60 border border-[#8C6D4F]/20 rounded-full backdrop-blur-md pointer-events-none text-[9.5px] font-mono text-[#C4B7AA] tracking-wider uppercase z-20 max-w-[92vw] text-center">
+          <Compass className="w-3 h-3 text-[#D4AF37] flex-shrink-0" />
+          <span className="truncate">DRAG / SWIPE TO FLEX • CLICK / TAP TO ZOOM</span>
         </div>
       </div>
     </section>

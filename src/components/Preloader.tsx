@@ -101,7 +101,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete, minDuration = 
               <span className="text-[#D4AF37] font-semibold text-sm sm:text-base md:text-lg">{progress}%</span>
             </div>
             {/* Fine Luxury Progress Track */}
-            <div className="w-64 sm:w-80 md:w-96 h-1 sm:h-1.5 bg-white/10 rounded-full overflow-hidden shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+            <div className="w-64 sm:w-80 md:w-96 max-w-[78vw] h-1 sm:h-1.5 bg-white/10 rounded-full overflow-hidden shadow-[0_0_15px_rgba(212,175,55,0.3)]">
               <motion.div
                 className="h-full bg-gradient-to-r from-[#8C6D4F] via-[#D4AF37] to-[#F7E7C4] shadow-[0_0_10px_#D4AF37]"
                 style={{ width: `${progress}%` }}

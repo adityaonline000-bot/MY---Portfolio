@@ -293,7 +293,7 @@ export const ContentCreationSection: React.FC = () => {
       data-scroll-type="content"
       data-scroll-section
       ref={containerRef}
-      className="cinematic-section relative w-full min-h-[100svh] h-auto bg-black/60 backdrop-blur-sm text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black py-20 sm:py-24 lg:py-28 px-6 sm:px-12 lg:px-20 overflow-visible flex flex-col justify-center border-t border-[#D4AF37]/20 shadow-[0_-20px_50px_rgba(0,0,0,0.95)]"
+      className="cinematic-section relative w-full min-h-[100svh] h-auto bg-black/60 backdrop-blur-sm text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black py-20 sm:py-24 lg:py-28 px-4 sm:px-12 lg:px-20 overflow-visible flex flex-col justify-center border-t border-[#D4AF37]/20 shadow-[0_-20px_50px_rgba(0,0,0,0.95)]"
     >
       <span id="creator" className="sr-only" />
 
@@ -355,10 +355,11 @@ export const ContentCreationSection: React.FC = () => {
               </p>
 
               {/* Caustic Interactive Toolbar - Centered */}
-              <div className="flex items-center justify-center flex-wrap gap-2 pt-1 mx-auto">
+              <div className="flex items-center justify-center flex-wrap gap-2.5 pt-1 mx-auto">
                 <button
+                  type="button"
                   onClick={() => setSoundEnabled((prev) => !prev)}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-sm border text-[10px] font-mono tracking-widest uppercase transition-all duration-300 ${
+                  className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-sm border text-[10px] sm:text-[10.5px] font-mono tracking-widest uppercase transition-all duration-300 min-h-[40px] cursor-pointer ${
                     soundEnabled
                       ? 'border-[#D4AF37] bg-[#D4AF37]/15 text-[#F7E7C4] shadow-[0_0_12px_rgba(212,175,55,0.25)]'
                       : 'border-[#8C6D4F]/30 bg-[#120F0C] text-[#8C6D4F] hover:text-[#E8DFD8] hover:border-[#8C6D4F]/60'
@@ -379,8 +380,9 @@ export const ContentCreationSection: React.FC = () => {
                 </button>
 
                 <button
+                  type="button"
                   onClick={handleShuffleAll}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm border border-[#8C6D4F]/30 bg-[#120F0C] hover:border-[#D4AF37]/60 text-[10px] font-mono tracking-widest uppercase text-[#C4B5A5] hover:text-[#F7E7C4] transition-all duration-300 shadow-sm"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-sm border border-[#8C6D4F]/30 bg-[#120F0C] hover:border-[#D4AF37]/60 text-[10px] sm:text-[10.5px] font-mono tracking-widest uppercase text-[#C4B5A5] hover:text-[#F7E7C4] transition-all duration-300 shadow-sm min-h-[40px] cursor-pointer"
                   title="Cycle Fluid Palettes Across Cards"
                 >
                   <Shuffle className="w-3 h-3 text-[#D4AF37]" />
@@ -388,8 +390,9 @@ export const ContentCreationSection: React.FC = () => {
                 </button>
 
                 <button
+                  type="button"
                   onClick={() => setAllFluidActive((prev) => !prev)}
-                  className={`hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm border text-[10px] font-mono tracking-widest uppercase transition-all duration-300 ${
+                  className={`hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-sm border text-[10px] sm:text-[10.5px] font-mono tracking-widest uppercase transition-all duration-300 min-h-[40px] cursor-pointer ${
                     allFluidActive
                       ? 'border-[#8C6D4F]/40 bg-[#14100D] text-[#D4AF37]'
                       : 'border-white/10 bg-transparent text-white/40'

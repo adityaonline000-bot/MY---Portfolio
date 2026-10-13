@@ -84,7 +84,7 @@ export const HeroSection: React.FC = () => {
       <div className="absolute inset-0 pointer-events-none z-[1] bg-radial from-transparent via-black/30 to-black/75" />
 
       {/* ================= CENTERED CONTENT LAYER ================= */}
-      <div className="relative z-10 flex flex-col justify-center items-center w-full px-6 sm:px-12 lg:px-16 pt-24 pb-12 pointer-events-none my-auto">
+      <div className="relative z-10 flex flex-col justify-center items-center w-full px-4 sm:px-10 lg:px-16 pt-20 sm:pt-24 pb-10 sm:pb-12 pointer-events-none my-auto">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -94,7 +94,7 @@ export const HeroSection: React.FC = () => {
         >
 
           {/* Centered TechText Headline */}
-          <motion.div variants={fadeUpVariants} className="relative mb-6 select-none w-full">
+          <motion.div variants={fadeUpVariants} className="relative mb-5 sm:mb-6 select-none w-full">
             <div
               className="hero-tech-headline flex flex-col items-center justify-center text-center w-full"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}
@@ -180,22 +180,22 @@ export const HeroSection: React.FC = () => {
           {/* Centered Quote Block */}
           <motion.div
             variants={fadeUpVariants}
-            className="flex flex-col items-center text-center pt-1 mb-8 max-w-lg mx-auto"
+            className="flex flex-col items-center text-center pt-1 mb-6 sm:mb-8 max-w-lg mx-auto px-2"
           >
-            <div className="hero-quote flex items-center justify-center space-x-3 text-center">
+            <div className="hero-quote flex items-center justify-center space-x-2.5 sm:space-x-3 text-center">
               <span className="hero-quote__mark text-[#D4AF37]">“</span>
-              <div className="hero-quote__text text-center text-sm sm:text-base tracking-[0.2em] text-[#E8DFD8]/95 font-light">
+              <div className="hero-quote__text text-center text-xs sm:text-sm md:text-base tracking-[0.14em] sm:tracking-[0.2em] text-[#E8DFD8]/95 font-light">
                 <span>BUILD. SHIP. SOLVE. DELIVER &amp; GROW.</span>
               </div>
               <span className="hero-quote__mark text-[#D4AF37]">”</span>
             </div>
-            <div className="hero-quote__divider w-28 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/60 to-transparent mt-3" />
+            <div className="hero-quote__divider w-24 sm:w-28 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/60 to-transparent mt-3" />
           </motion.div>
 
           {/* Centered CTA Buttons */}
           <motion.div
             variants={fadeUpVariants}
-            className="flex flex-row flex-wrap items-center justify-center gap-4 sm:gap-6 pt-1 mb-8"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 pt-1 mb-6 sm:mb-8 w-full max-w-md sm:max-w-none"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
             {/* Explore My Work CTA */}
@@ -203,7 +203,7 @@ export const HeroSection: React.FC = () => {
               href="#projects"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.98 }}
-              className="relative inline-flex items-center space-x-3 px-8 sm:px-10 py-3.5 sm:py-4 border border-[#8C6D4F] bg-[#120F0C]/90 hover:border-[#D4AF37] text-[#EAD8C7] hover:text-[#FFF5EB] text-[11px] sm:text-xs font-medium tracking-[0.24em] uppercase transition-all duration-300 shadow-[0_0_30px_rgba(212,175,55,0.22)]"
+              className="relative inline-flex items-center justify-center space-x-3 w-full sm:w-auto px-7 sm:px-10 py-3.5 sm:py-4 border border-[#8C6D4F] bg-[#120F0C]/90 hover:border-[#D4AF37] text-[#EAD8C7] hover:text-[#FFF5EB] text-[11px] sm:text-xs font-medium tracking-[0.22em] sm:tracking-[0.24em] uppercase transition-all duration-300 shadow-[0_0_30px_rgba(212,175,55,0.22)] min-h-[44px]"
             >
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#E8D7C5]/50 to-transparent pointer-events-none" />
               <span>EXPLORE MY WORK</span>
@@ -220,7 +220,7 @@ export const HeroSection: React.FC = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.98 }}
-              className="relative inline-flex items-center space-x-2 px-8 sm:px-10 py-3.5 sm:py-4 border border-[#8C6D4F]/50 hover:border-[#8C6D4F] text-[#BFA895] hover:text-[#EAD8C7] text-[11px] sm:text-xs font-medium tracking-[0.24em] uppercase transition-all duration-300 bg-black/50 backdrop-blur-sm"
+              className="relative inline-flex items-center justify-center space-x-2 w-full sm:w-auto px-7 sm:px-10 py-3.5 sm:py-4 border border-[#8C6D4F]/50 hover:border-[#8C6D4F] text-[#BFA895] hover:text-[#EAD8C7] text-[11px] sm:text-xs font-medium tracking-[0.22em] sm:tracking-[0.24em] uppercase transition-all duration-300 bg-black/50 backdrop-blur-sm min-h-[44px]"
             >
               <span>DOWNLOAD RESUME</span>
               <span className="transform transition-transform duration-300 group-hover:translate-y-0.5 text-xs">

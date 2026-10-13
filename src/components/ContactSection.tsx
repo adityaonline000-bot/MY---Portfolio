@@ -22,7 +22,7 @@ export const ContactSection: React.FC = () => {
       id="contact"
       data-scroll-type="scene"
       data-scroll-section
-      className="cinematic-section relative w-full min-h-[100svh] bg-black/60 backdrop-blur-sm text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black py-20 sm:py-24 lg:py-28 px-6 sm:px-12 lg:px-20 overflow-hidden flex flex-col justify-center border-t border-[#D4AF37]/20 shadow-[0_-20px_50px_rgba(0,0,0,0.95)]"
+      className="cinematic-section relative w-full min-h-[100svh] bg-black/60 backdrop-blur-sm text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black py-20 sm:py-24 lg:py-28 px-4 sm:px-12 lg:px-20 overflow-hidden flex flex-col justify-center border-t border-[#D4AF37]/20 shadow-[0_-20px_50px_rgba(0,0,0,0.95)]"
     >
       <div className="max-w-7xl mx-auto w-full relative z-10">
         
@@ -78,7 +78,7 @@ export const ContactSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative w-full rounded-sm border border-[#8C6D4F]/40 bg-[#0A0806] p-8 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.9)] overflow-hidden"
+            className="relative w-full rounded-sm border border-[#8C6D4F]/40 bg-[#0A0806] p-5 xs:p-7 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.9)] overflow-hidden"
           >
             {/* Top Gold Horizon Edge */}
             <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
@@ -103,7 +103,7 @@ export const ContactSection: React.FC = () => {
                 <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
                   <a
                     href={`mailto:adityaonline000@gmail.com?subject=${encodeURIComponent(`Project Inquiry: ${formData.name}`)}&body=${encodeURIComponent(formData.message)}`}
-                    className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-sm border border-[#D4AF37] bg-[#D4AF37]/15 text-[#F7E7C4] text-xs font-mono uppercase tracking-wider hover:bg-[#D4AF37]/25 transition-colors"
+                    className="inline-flex items-center space-x-2 px-5 py-2.5 min-h-[44px] rounded-sm border border-[#D4AF37] bg-[#D4AF37]/15 text-[#F7E7C4] text-xs font-mono uppercase tracking-wider hover:bg-[#D4AF37]/25 transition-colors"
                   >
                     <span>Open Mail Client ↗</span>
                   </a>
@@ -111,14 +111,14 @@ export const ContactSection: React.FC = () => {
                     href="https://wa.me/919519429362"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-sm border border-[#8C6D4F]/50 bg-[#120F0C] text-[#E8DFD8] text-xs font-mono uppercase tracking-wider hover:border-[#D4AF37] transition-colors"
+                    className="inline-flex items-center space-x-2 px-5 py-2.5 min-h-[44px] rounded-sm border border-[#8C6D4F]/50 bg-[#120F0C] text-[#E8DFD8] text-xs font-mono uppercase tracking-wider hover:border-[#D4AF37] transition-colors"
                   >
                     <span>Chat on WhatsApp ↗</span>
                   </a>
                   <button
                     type="button"
                     onClick={() => setSent(false)}
-                    className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-sm border border-[#8C6D4F]/30 text-[#8C6D4F] text-xs font-mono uppercase tracking-wider hover:text-white transition-colors"
+                    className="inline-flex items-center space-x-2 px-4 py-2.5 min-h-[44px] rounded-sm border border-[#8C6D4F]/30 text-[#8C6D4F] text-xs font-mono uppercase tracking-wider hover:text-white transition-colors cursor-pointer"
                   >
                     <span>Reset</span>
                   </button>
@@ -129,47 +129,56 @@ export const ContactSection: React.FC = () => {
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <span className="block text-[9.5px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
+                    <label htmlFor="contact-sender-name" className="block text-[9.5px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2 cursor-pointer">
                       // SENDER
-                    </span>
+                    </label>
                     <input
+                      id="contact-sender-name"
+                      name="name"
                       type="text"
+                      autoComplete="name"
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Enter name"
-                      className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 px-4 py-3 outline-none rounded-sm transition-colors"
+                      className="w-full min-h-[44px] bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 px-4 py-3 outline-none rounded-sm transition-colors"
                       style={{ fontFamily: "'Montserrat', sans-serif" }}
                     />
                   </div>
 
                   <div>
-                    <span className="block text-[9.5px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
+                    <label htmlFor="contact-sender-email" className="block text-[9.5px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2 cursor-pointer">
                       // CHANNEL
-                    </span>
+                    </label>
                     <input
+                      id="contact-sender-email"
+                      name="email"
                       type="email"
+                      autoComplete="email"
+                      inputMode="email"
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="Enter email"
-                      className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 px-4 py-3 outline-none rounded-sm transition-colors"
+                      className="w-full min-h-[44px] bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 px-4 py-3 outline-none rounded-sm transition-colors"
                       style={{ fontFamily: "'Montserrat', sans-serif" }}
                     />
                   </div>
                 </div>
 
                 <div>
-                  <span className="block text-[9.5px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
+                  <label htmlFor="contact-sender-message" className="block text-[9.5px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2 cursor-pointer">
                     // PROJECT DETAILS &amp; INQUIRY
-                  </span>
+                  </label>
                   <textarea
+                    id="contact-sender-message"
+                    name="message"
                     required
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Tell me about your project, system requirements, or timeline..."
-                    className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 p-4 outline-none rounded-sm transition-colors resize-none"
+                    className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 p-4 outline-none rounded-sm transition-colors resize-none"
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   />
                 </div>
@@ -178,7 +187,7 @@ export const ContactSection: React.FC = () => {
                   <button
                     type="submit"
                     data-cursor="send"
-                    className="w-full py-3.5 border border-[#8C6D4F]/50 bg-[#14100D] hover:border-[#D4AF37] hover:bg-[#1A1510] text-[#E8DFD8] hover:text-[#F7E7C4] text-xs font-medium tracking-[0.25em] uppercase transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
+                    className="w-full min-h-[48px] py-3.5 border border-[#8C6D4F]/50 bg-[#14100D] hover:border-[#D4AF37] hover:bg-[#1A1510] active:scale-[0.99] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D4AF37] text-[#E8DFD8] hover:text-[#F7E7C4] text-xs font-medium tracking-[0.25em] uppercase transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-pointer"
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
                     SEND TRANSMISSION ↗
@@ -194,7 +203,7 @@ export const ContactSection: React.FC = () => {
         <div className="max-w-2xl mx-auto w-full mt-6 flex flex-wrap items-center justify-between gap-3 px-2 text-[11px] font-mono text-[#8C6D4F]">
           <a
             href="mailto:adityaonline000@gmail.com"
-            className="hover:text-[#D4AF37] transition-colors flex items-center space-x-1.5"
+            className="hover:text-[#D4AF37] transition-colors inline-flex items-center space-x-1.5 min-h-[40px] py-2"
           >
             <span>✉ adityaonline000@gmail.com</span>
           </a>
@@ -202,11 +211,11 @@ export const ContactSection: React.FC = () => {
             href="https://wa.me/919519429362"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-[#D4AF37] transition-colors flex items-center space-x-1.5"
+            className="hover:text-[#D4AF37] transition-colors inline-flex items-center space-x-1.5 min-h-[40px] py-2"
           >
             <span>💬 +91 95194 29362</span>
           </a>
-          <span className="text-[#8C6D4F]/70">Typical response &lt; 24h</span>
+          <span className="text-[#8C6D4F]/70 py-2">Typical response &lt; 24h</span>
         </div>
 
         {/* System Footer Line */}

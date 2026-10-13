@@ -619,6 +619,7 @@ interface LayoutMetrics {
 interface Engine {
   wake: () => void;
   setItems: (next: CarouselItem[]) => void;
+  closeFocus: () => boolean;
 }
 
 export const FlexCarousel: React.FC<FlexCarouselProps> = ({
@@ -1183,7 +1184,7 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
         focus.t < 0.01 &&
         !pointer.dragging &&
         !pointer.down &&
-        now - interactedAt > 1400;
+        now - interactedAt > (pointer.touch ? 4500 : 2500);
 
       if (canAutoplay) {
         animating = true;
@@ -1583,7 +1584,8 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
         dirty = true;
         start();
       },
-      setItems
+      setItems,
+      closeFocus: () => closeFocus()
     };
 
     resize();
@@ -1676,6 +1678,16 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
       aria-label="Image carousel"
       tabIndex={0}
     >
+      {focusOpen && (
+        <button
+          type="button"
+          onClick={() => engineRef.current?.closeFocus()}
+          aria-label="Close zoomed certificate view"
+          className="flex-carousel__close-btn"
+        >
+          ✕ CLOSE ZOOM
+        </button>
+      )}
       {captions && current && revealed && (
         <div className="flex-carousel__caption" aria-hidden="true">
           <span key={active} className="flex-carousel__title">

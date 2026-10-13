@@ -71,6 +71,17 @@ export const Navbar: React.FC<NavbarProps> = ({ pathname = '/' }) => {
     };
   }, [isHome]);
 
+  // Close mobile menu on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isMobileMenuOpen]);
+
   // Smooth scroll handler using SectionScrollController
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
@@ -97,6 +108,11 @@ export const Navbar: React.FC<NavbarProps> = ({ pathname = '/' }) => {
             ? 'bg-black/85 backdrop-blur-xl border-b border-[#D4AF37]/20 py-3.5 sm:py-4 px-6 sm:px-12 lg:px-16 shadow-[0_12px_35px_rgba(0,0,0,0.85)]'
             : 'bg-transparent border-b border-transparent py-5 sm:py-6 px-6 sm:px-12 lg:px-16'
         }`}
+        style={{
+          paddingTop: isScrolled
+            ? 'max(0.875rem, env(safe-area-inset-top, 0px))'
+            : 'max(1.25rem, env(safe-area-inset-top, 0px))',
+        }}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between w-full">
           {/* Brand / Logo */}
@@ -104,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({ pathname = '/' }) => {
             href="#hero"
             onClick={(e) => handleNavClick(e, 'hero')}
             data-cursor="home"
-            className="group flex items-center space-x-2 text-xs sm:text-sm tracking-[0.25em] font-medium uppercase text-[#EAD8C7] hover:text-[#D4AF37] transition-colors duration-300 select-none"
+            className="group flex items-center space-x-2 text-xs sm:text-sm tracking-[0.25em] font-medium uppercase text-[#EAD8C7] hover:text-[#D4AF37] transition-colors duration-300 select-none min-h-[44px]"
             style={{ fontFamily: "'Cinzel', serif" }}
           >
             <span>ADITYA YADAV</span>
@@ -144,13 +160,13 @@ export const Navbar: React.FC<NavbarProps> = ({ pathname = '/' }) => {
           </nav>
 
           {/* Right Action (Magnetic Contact CTA) & Mobile Toggle */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3 sm:space-x-4">
             <Magnetic strength={0.25} className="hidden sm:inline-block">
               <a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, 'contact')}
                 data-cursor="connect"
-                className="group flex items-center space-x-2 text-[11px] tracking-[0.24em] font-light uppercase py-2 px-4 border border-[#8C6D4F]/50 hover:border-[#D4AF37] text-[#EAD8C7] transition-all duration-300 backdrop-blur-sm bg-black/40 hover:bg-[#D4AF37]/10 rounded-sm"
+                className="group flex items-center space-x-2 text-[11px] tracking-[0.24em] font-light uppercase py-2 px-4 border border-[#8C6D4F]/50 hover:border-[#D4AF37] text-[#EAD8C7] transition-all duration-300 backdrop-blur-sm bg-black/40 hover:bg-[#D4AF37]/10 rounded-sm min-h-[44px]"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
                 <span>CONTACT</span>
@@ -160,12 +176,14 @@ export const Navbar: React.FC<NavbarProps> = ({ pathname = '/' }) => {
               </a>
             </Magnetic>
 
-            {/* Mobile Menu Toggle Button */}
+            {/* Mobile Menu Toggle Button (44px min touch target) */}
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle mobile navigation menu"
-              className="md:hidden flex flex-col items-center justify-center w-9 h-9 space-y-1.5 border border-[#8C6D4F]/40 bg-black/60 backdrop-blur-sm text-[#EAD8C7] rounded-sm focus:outline-none"
+              aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navigation-drawer"
+              className="md:hidden flex flex-col items-center justify-center min-w-[44px] min-h-[44px] w-11 h-11 space-y-1.5 border border-[#8C6D4F]/40 bg-black/60 backdrop-blur-sm text-[#EAD8C7] rounded-sm focus:outline-none focus-visible:ring-1 focus-visible:ring-[#D4AF37]"
             >
               <span
                 className={`block w-4 h-[1px] bg-[#D4AF37] transition-all duration-300 ${
@@ -191,13 +209,17 @@ export const Navbar: React.FC<NavbarProps> = ({ pathname = '/' }) => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            id="mobile-navigation-drawer"
+            initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="md:hidden fixed inset-0 top-[60px] bg-black/95 backdrop-blur-2xl z-40 p-8 flex flex-col justify-between border-t border-[#D4AF37]/20"
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.28, ease: 'easeInOut' }}
+            className="md:hidden fixed inset-0 top-[64px] bg-black/95 backdrop-blur-2xl z-40 px-6 py-6 sm:p-8 flex flex-col justify-between border-t border-[#D4AF37]/20 overflow-y-auto"
+            style={{
+              paddingBottom: 'max(2rem, env(safe-area-inset-bottom, 0px))',
+            }}
           >
-            <nav className="flex flex-col space-y-6 pt-4">
+            <nav className="flex flex-col space-y-4 pt-2" aria-label="Mobile Navigation">
               {navItems.map((item, idx) => {
                 const isActive = isHome && activeSection === item.targetId;
 
@@ -208,8 +230,8 @@ export const Navbar: React.FC<NavbarProps> = ({ pathname = '/' }) => {
                     onClick={(e) => handleNavClick(e, item.targetId)}
                     initial={{ opacity: 0, x: -16 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.05 }}
-                    className={`text-2xl font-light tracking-[0.2em] uppercase transition-colors ${
+                    transition={{ delay: idx * 0.04 }}
+                    className={`text-2xl sm:text-3xl font-light tracking-[0.2em] uppercase transition-colors py-1 min-h-[44px] flex items-center ${
                       isActive ? 'text-[#D4AF37]' : 'text-[#E8DFD8] hover:text-[#D4AF37]'
                     }`}
                     style={{ fontFamily: "'Bebas Neue', sans-serif" }}
@@ -220,9 +242,30 @@ export const Navbar: React.FC<NavbarProps> = ({ pathname = '/' }) => {
               })}
             </nav>
 
-            <div className="pt-8 border-t border-[#8C6D4F]/30 text-xs text-[#A8988B] font-mono flex items-center justify-between">
-              <span>NXTAURA DIGITAL SYSTEM</span>
-              <span className="text-[#D4AF37]">// ADITYA YADAV</span>
+            <div className="pt-6 border-t border-[#8C6D4F]/30 space-y-4">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  href="#contact"
+                  onClick={(e) => handleNavClick(e, 'contact')}
+                  className="flex items-center justify-center space-x-2 py-3 px-4 border border-[#D4AF37]/60 bg-[#D4AF37]/10 text-[#F7E7C4] text-xs font-mono tracking-widest uppercase rounded-sm min-h-[44px]"
+                >
+                  <span>GET IN TOUCH ↗</span>
+                </a>
+                <a
+                  href="/resume.pdf"
+                  download="Aditya_Yadav_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center space-x-2 py-3 px-4 border border-[#8C6D4F]/40 bg-black/50 text-[#C4B5A5] text-xs font-mono tracking-widest uppercase rounded-sm min-h-[44px]"
+                >
+                  <span>DOWNLOAD RESUME ↓</span>
+                </a>
+              </div>
+
+              <div className="text-[10px] text-[#A8988B] font-mono flex items-center justify-between">
+                <span>NXTAURA DIGITAL SYSTEM</span>
+                <span className="text-[#D4AF37]">// ADITYA YADAV</span>
+              </div>
             </div>
           </motion.div>
         )}

@@ -244,7 +244,7 @@ export const SkillsSection: React.FC = () => {
       id="capabilities"
       data-scroll-type="content"
       data-scroll-section
-      className="cinematic-section relative w-full min-h-[100svh] h-auto bg-black/60 backdrop-blur-sm text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black py-16 sm:py-20 lg:py-24 px-6 sm:px-12 lg:px-20 overflow-visible flex flex-col justify-center border-t border-[#D4AF37]/20 shadow-[0_-20px_50px_rgba(0,0,0,0.95)]"
+      className="cinematic-section relative w-full min-h-[100svh] h-auto bg-black/60 backdrop-blur-sm text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black py-16 sm:py-20 lg:py-24 px-4 sm:px-12 lg:px-20 overflow-visible flex flex-col justify-center border-t border-[#D4AF37]/20 shadow-[0_-20px_50px_rgba(0,0,0,0.95)]"
     >
       <span id="skills" className="sr-only" />
       {/* Ambient Glows */}
@@ -388,7 +388,7 @@ export const SkillsSection: React.FC = () => {
               </div>
 
               <span className="text-[9px] font-mono text-[#8C6D4F] mt-2 text-center tracking-[0.18em] uppercase select-none z-10">
-                HOVER TO INSPECT &amp; PAUSE ORBIT DYNAMICS
+                TOUCH / HOVER TO PAUSE ORBIT DYNAMICS
               </span>
             </motion.div>
 

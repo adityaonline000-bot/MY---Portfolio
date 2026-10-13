@@ -13,7 +13,7 @@
 }
 
 .loader {
-  --main-size: clamp(3em, 7.8vw, 7.2em);
+  --main-size: clamp(1.8em, 6.8vw, 6.5em);
   --text-color: #F7E7C4;
   --shine-color: rgba(212, 175, 55, 0.45);
   --shadow-color: #8C6D4F;
@@ -28,6 +28,7 @@
   text-transform: uppercase;
   color: var(--text-color);
   width: 7.3em;
+  max-width: 92vw;
   height: 1.15em;
   filter: drop-shadow(0 0 0.08em var(--shine-color));
 }

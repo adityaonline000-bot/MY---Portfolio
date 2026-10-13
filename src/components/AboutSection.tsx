@@ -303,7 +303,7 @@ export const AboutSection: React.FC = () => {
       id="about" 
       data-scroll-type="scene"
       data-scroll-section
-      className="cinematic-section relative w-full min-h-[100svh] bg-black/60 backdrop-blur-sm text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black py-16 sm:py-20 lg:py-24 px-6 sm:px-10 lg:px-16 overflow-hidden flex flex-col justify-center border-t border-[#D4AF37]/20 shadow-[0_-20px_50px_rgba(0,0,0,0.95)]"
+      className="cinematic-section relative w-full min-h-[100svh] bg-black/60 backdrop-blur-sm text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black py-16 sm:py-20 lg:py-24 px-4 sm:px-10 lg:px-16 overflow-hidden flex flex-col justify-center border-t border-[#D4AF37]/20 shadow-[0_-20px_50px_rgba(0,0,0,0.95)]"
     >
       {/* ================= BACKGROUND GLOWS & AMBIENT ATMOSPHERE ================= */}
       <div 
@@ -416,7 +416,7 @@ export const AboutSection: React.FC = () => {
                   href="https://www.instagram.com/adityakvideos_/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full border border-[#8C6D4F]/30 bg-[#14100D]/60 hover:bg-[#1A1510] hover:border-[#D4AF37] text-xs text-[#E8DFD8] hover:text-[#F7E7C4] transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.5)] group"
+                  className="inline-flex items-center space-x-2 px-3.5 py-2 rounded-full border border-[#8C6D4F]/30 bg-[#14100D]/60 hover:bg-[#1A1510] hover:border-[#D4AF37] text-xs text-[#E8DFD8] hover:text-[#F7E7C4] transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.5)] group min-h-[40px]"
                 >
                   <svg className="w-3.5 h-3.5 text-[#D4AF37] transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
@@ -431,7 +431,7 @@ export const AboutSection: React.FC = () => {
                   href="https://www.instagram.com/nxtaura_innovations/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full border border-[#8C6D4F]/30 bg-[#14100D]/60 hover:bg-[#1A1510] hover:border-[#D4AF37] text-xs text-[#E8DFD8] hover:text-[#F7E7C4] transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.5)] group"
+                  className="inline-flex items-center space-x-2 px-3.5 py-2 rounded-full border border-[#8C6D4F]/30 bg-[#14100D]/60 hover:bg-[#1A1510] hover:border-[#D4AF37] text-xs text-[#E8DFD8] hover:text-[#F7E7C4] transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.5)] group min-h-[40px]"
                 >
                   <svg className="w-3.5 h-3.5 text-[#D4AF37] transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />

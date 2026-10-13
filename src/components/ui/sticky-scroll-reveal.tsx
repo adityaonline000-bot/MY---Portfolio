@@ -126,9 +126,16 @@ export const StickyScroll = ({
                   ))}
                 </motion.div>
               )}
+
+              {/* Mobile and Tablet Inline Interactive Showcase */}
+              {item.content && (
+                <div className="lg:hidden mt-6 w-full rounded-xl overflow-hidden border border-[#D4AF37]/35 shadow-[0_8px_30px_rgba(0,0,0,0.8)] min-h-[200px]">
+                  {item.content}
+                </div>
+              )}
             </div>
           ))}
-          <div className="h-32" />
+          <div className="h-24 sm:h-32" />
         </div>
       </div>
       <div
